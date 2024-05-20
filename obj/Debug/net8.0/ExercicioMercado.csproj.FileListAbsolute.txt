@@ -1,0 +1,14 @@
+C:\Users\asdsantos\VSCODE\ExercicioMercado\bin\Debug\net8.0\ExercicioMercado.exe
+C:\Users\asdsantos\VSCODE\ExercicioMercado\bin\Debug\net8.0\ExercicioMercado.deps.json
+C:\Users\asdsantos\VSCODE\ExercicioMercado\bin\Debug\net8.0\ExercicioMercado.runtimeconfig.json
+C:\Users\asdsantos\VSCODE\ExercicioMercado\bin\Debug\net8.0\ExercicioMercado.dll
+C:\Users\asdsantos\VSCODE\ExercicioMercado\bin\Debug\net8.0\ExercicioMercado.pdb
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.AssemblyInfoInputs.cache
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.AssemblyInfo.cs
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.csproj.CoreCompileInputs.cache
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.dll
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\refint\ExercicioMercado.dll
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.pdb
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.genruntimeconfig.cache
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ref\ExercicioMercado.dll
