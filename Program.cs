@@ -25,7 +25,51 @@ void Encerramento() // Esse é só um método estilizado para quando o usuário 
     // Eu usei o Console.Write nesse método para que, na 'animação' de encerramento, o programa não fique pulando uma linha a cada texto apresentado.
     // É por estética.
     Console.Clear();
-    Console.Write("\tEncerrando");
+    Console.Write("\t.");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t..");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t...");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t..");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t.");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t.");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t..");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t...");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t..");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t.");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\t");
     Thread.Sleep(400);
     Console.Clear();
 
@@ -37,7 +81,7 @@ void Encerramento() // Esse é só um método estilizado para quando o usuário 
     Thread.Sleep(400);
     Console.Clear();
 
-    Console.WriteLine("\tEncerrando...");
+    Console.Write("\tEncerrando...");
     Thread.Sleep(450);
 }
 

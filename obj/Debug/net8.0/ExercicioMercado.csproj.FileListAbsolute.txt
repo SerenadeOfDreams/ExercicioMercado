@@ -12,3 +12,4 @@ C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\refint\ExercicioMerc
 C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.pdb
 C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.genruntimeconfig.cache
 C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ref\ExercicioMercado.dll
+C:\Users\asdsantos\VSCODE\ExercicioMercado\obj\Debug\net8.0\ExercicioMercado.sourcelink.json
