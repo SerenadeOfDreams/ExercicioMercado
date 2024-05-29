@@ -45,34 +45,6 @@ void Encerramento() // Esse é só um método estilizado para quando o usuário 
     Thread.Sleep(400);
     Console.Clear();
 
-    Console.Write("\t");
-    Thread.Sleep(400);
-    Console.Clear();
-
-    Console.Write("\t.");
-    Thread.Sleep(400);
-    Console.Clear();
-
-    Console.Write("\t..");
-    Thread.Sleep(400);
-    Console.Clear();
-
-    Console.Write("\t...");
-    Thread.Sleep(400);
-    Console.Clear();
-
-    Console.Write("\t..");
-    Thread.Sleep(400);
-    Console.Clear();
-
-    Console.Write("\t.");
-    Thread.Sleep(400);
-    Console.Clear();
-
-    Console.Write("\t");
-    Thread.Sleep(400);
-    Console.Clear();
-
     Console.Write("\tEncerrando.");
     Thread.Sleep(400);
     Console.Clear();
