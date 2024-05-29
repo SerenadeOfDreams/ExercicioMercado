@@ -16,7 +16,7 @@ void VoltarAoMenu() // Esse método serve para retornar ao método ExibirMenuDoM
 {
     Console.Write("\n\tPressione qualquer tecla para voltar ao menu");
     Console.ReadKey();
-    Thread.Sleep(2000);
+    Thread.Sleep(1000);
     ExibirMenuDoMercado();
 }
 

@@ -34,14 +34,13 @@ internal class MenuFinalizarCompra // Dentro dessa classe interna é onde ocorre
             if(listaDeCompras.TryGetValue(titulo, out Lista? lista)) // Verificando se foi o que foi passado é o título de alguma lista.
             {
                 // Se foi:
+                lista.ExibirItens(); // Chama o método ExibirItens, da classe Lista.
                 lista.FecharCompra(); // Chama o método FecharCompra, da classe Lista.
             } else
             {
                 // Se não foi:
                 Console.WriteLine($"\n\tLista '{titulo}' não localizada.");
             }
-        }
-
-        
+        }        
     }
 }
