@@ -27,8 +27,7 @@ internal class MenuFinalizarCompra // Dentro dessa classe interna é onde ocorre
             // do método VoltarAoMenu(). Essa chamada é o 'script padrão', pois ele solicita que seja digitada qualquer tecla para retornar
             // ao menú do programa
             {
-                Console.WriteLine("\n\tVoltando.");
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 return; // Sai do método Executar
             }
 

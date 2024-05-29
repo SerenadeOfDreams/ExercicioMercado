@@ -88,6 +88,7 @@ void Encerramento() // Esse é só um método estilizado para quando o usuário 
 void ExibirMenuDoMercado() // Esse é o método principal, que direciona o usuário até as funções do programa.
 {
     Console.Clear();
+    
     Console.WriteLine("\n\t1 - Criar lista de compras");
     Console.WriteLine("\t2 - Preencher lista de compras");
     Console.WriteLine("\t3 - Visualizar lista de compras");
@@ -137,10 +138,13 @@ void ExibirMenuDoMercado() // Esse é o método principal, que direciona o usuá
             Encerramento();
             break;
         default: // O default é para caso o usuário insira qualquer coisa na opção que não seja um número inteiro e que seja dentro da faixa de opções.
+            Console.Clear();
             Console.WriteLine("\n\tOpção inválida.");
+            Thread.Sleep(2000);
+            Console.Clear();
             break;
+        
     }
-
 }
 
 ExibirMenuDoMercado(); // Essa é a chamada do ponto de entrada do programa.

@@ -18,7 +18,7 @@ internal class MenuExibirLista // Dentro dessa classe interna é onde ocorrem to
             // O operador de loop 'while' é para que o programa retorne a um ponto específico no código e execute a ação novamente,
             // até que o usuário cancele essa ação. Aqui, ele retorna à solicitação do título de uma lista já existente para visualização.
 
-            Console.Write($"\n\tInforme o titulo da lista a visualizar ou digite sair para interromper: ");
+            Console.Write($"\n\tInforme o titulo da lista a visualizar ou digite 'sair' para interromper: ");
             string titulo = Console.ReadLine()!;
 
             if (titulo == "sair")
@@ -27,8 +27,7 @@ internal class MenuExibirLista // Dentro dessa classe interna é onde ocorrem to
             // do método VoltarAoMenu(). Essa chamada é o 'script padrão', pois ele solicita que seja digitada qualquer tecla para retornar
             // ao menú do programa
             {
-                Console.WriteLine("\n\tVoltando.");
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 return; // Sai do método Executar
             }
 

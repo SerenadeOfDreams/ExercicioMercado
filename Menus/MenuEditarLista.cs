@@ -100,6 +100,7 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
             if (produtoParaEditar == "sair")
             {
                 Console.WriteLine("\n\tEdição cancelada.");
+                Thread.Sleep(500);
                 return; // Sai do método EditarItemDaLista
             }
 
