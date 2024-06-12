@@ -55,33 +55,43 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
     // Esse é o método que altera o título da lista, substituindo o que foi informado e identificado através do método acima
     // pelo novo título desejado.
     {
-        Console.Write("\n\tInforme o novo título: ");
-        string novoTitulo = Console.ReadLine()!;
-
-        // Verifica se o novo título já existe
-        if (listaDeCompras.ContainsKey(novoTitulo)) // Verificando se foi o que foi passado é o título de alguma lista.
+        while(true)
         {
-            // Se foi:
-            Console.WriteLine($"\n\tLista '{novoTitulo}' já existe.");
-        }
-        else
-        {
-            // Se não foi:
-            string tituloOriginal = lista.Titulo;
-            // Informa o programa que o titulo original dentro do método EditarTituloDaLista() é o mesmo que o título padrão da lista informada
-            // no método acima.
+            Console.Write("\n\tInforme o novo título ou digite 'sair' para interromper a edição: ");
+            string novoTitulo = Console.ReadLine()!;
 
-            lista.EditarTituloDaLista(tituloOriginal, novoTitulo);
-            // Chamada do método EditarTituloDaLista(), da classe Lista.
+            if (novoTitulo == "sair")
+            {
+                Console.WriteLine("\n\tEdição cancelada.");
+                Thread.Sleep(500);
+                return; // Sai do método EditarTituloDaLista
+            }
 
-            listaDeCompras.Remove(tituloOriginal);
-            // Remoção do título anterior, chamado de 'original'.
+            // Verifica se o novo título já existe
+            if (listaDeCompras.ContainsKey(novoTitulo)) // Verificando se foi o que foi passado é o título de alguma lista.
+            {
+                // Se foi:
+                Console.WriteLine($"\n\tLista '{novoTitulo}' já existe.");
+            }
+            else
+            {
+                // Se não foi:
+                string tituloOriginal = lista.Titulo;
+                // Informa o programa que o titulo original dentro do método EditarTituloDaLista() é o mesmo que o título padrão da lista informada
+                // no método acima.
 
-            listaDeCompras.Add(novoTitulo, lista);
-            // Adição, logo em seguida, do novo título.
+                lista.EditarTituloDaLista(tituloOriginal, novoTitulo);
+                // Chamada do método EditarTituloDaLista(), da classe Lista.
 
-            // Mesmo que o 'título 'original' tenha recebido esse nome, o título novo passa a ser o 'original' e quando é feita a alteraçaõ do título
-            // mais uma vez, o que era o título 'novo', dentro do contexto desses métodos, vira o título 'original'.
+                listaDeCompras.Remove(tituloOriginal);
+                // Remoção do título anterior, chamado de 'original'.
+
+                listaDeCompras.Add(novoTitulo, lista);
+                // Adição, logo em seguida, do novo título.
+
+                // Mesmo que o 'título 'original' tenha recebido esse nome, o título novo passa a ser o 'original' e quando é feita a alteraçaõ do título
+                // mais uma vez, o que era o título 'novo', dentro do contexto desses métodos, vira o título 'original'.
+            }
         }
     }
 
@@ -155,13 +165,17 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                         itemParaEditar.Produto = novoValorString;
                         break;
                     case "quantidade":
-                        if (!int.TryParse(novoValorString, out novoValorInt))
+                        if (!int.TryParse(novoValorString, out novoValorInt) && novoValorInt > 0)
+                        {
+                            itemParaEditar.Quantidade = novoValorInt;
+                            break;
+                        }
+                        else
                         {
                             Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número inteiro.");
                             continue; // Retorna ao início do loop para solicitar novo valor
                         }
-                        itemParaEditar.Quantidade = novoValorInt;
-                        break;
+                        
                     case "valor":
                         if (!decimal.TryParse(novoValorString, out novoValorDecimal))
                         {
