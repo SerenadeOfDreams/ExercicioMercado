@@ -143,29 +143,31 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                     Console.WriteLine("\n\tCampo inválido. Por favor, escolha 'produto', 'quantidade' ou 'valor'.");
                     return;
                 }
-            
+
+                
                 string novoValorString;
                 int novoValorInt;
                 decimal novoValorDecimal;
 
                 Console.Write($"\n\tInforme o novo {campoAlteracao} ou digite 'sair' para interromper a edição: ");
-                novoValorString = Console.ReadLine()!;
+                // novoValorString = Console.ReadLine()!;
 
-                if (novoValorString.ToLower() == "sair")
-                {
-                    Console.WriteLine("\n\tEdição cancelada.");
-                    return; // Sai do método EditarItemDaLista
-                }
+                // if (novoValorString.ToLower() == "sair")
+                // {
+                //     Console.WriteLine("\n\tEdição cancelada.");
+                //     return; // Sai do método EditarItemDaLista
+                // }
 
                 switch (campoAlteracao)
                 {
                     // Aqui é usado o switch para consultar o que foi escrito em 'campoAlteração' e, de acordo com o case, com base no que foi passado
                     // no console, o programa segue para alteração do conteúdo do campo desejado.
                     case "produto":
+                        novoValorString = Console.ReadLine()!;
                         itemParaEditar.Produto = novoValorString;
                         break;
                     case "quantidade":
-                        if (!int.TryParse(novoValorString, out novoValorInt) && novoValorInt > 0)
+                        if (int.TryParse(Console.ReadLine(), out novoValorInt) && novoValorInt > 0)
                         {
                             itemParaEditar.Quantidade = novoValorInt;
                             break;
@@ -173,21 +175,25 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                         else
                         {
                             Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número inteiro.");
-                            continue; // Retorna ao início do loop para solicitar novo valor
+                            continue; // Retorna ao início do loop para solicitar o novo valor
                         }
                         
                     case "valor":
-                        if (!decimal.TryParse(novoValorString, out novoValorDecimal))
+                        if (decimal.TryParse(Console.ReadLine(), out novoValorDecimal))
+                        {
+                            itemParaEditar.Valor = novoValorDecimal * itemParaEditar.Quantidade;
+                            break;
+                        }
+                        else
                         {
                             Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número decimal.");
-                            continue; // Retorna ao início do loop para solicitar novo valor
+                            continue; // Retorna ao início do loop para solicitar o novo valor
                         }
-                        itemParaEditar.Valor = novoValorDecimal;
-                        break;
+                        
                 }
 
                 Console.WriteLine("\n\tEdição realizada com sucesso.");
-                break; // Sai do loop após a edição ser realizada com sucesso  
+                break; // Sai do loop após a edição ser realizada com sucesso                  
             }
 
         }
