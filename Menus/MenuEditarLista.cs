@@ -20,36 +20,45 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
     // O método Executar é o que realiza a ação de acordo com a opção descrita no menú principal.
     {
         Console.Clear();
-        Console.Write("\n\tInforme o título da lista a editar: ");
-        string titulo = Console.ReadLine()!;
-
-        if (listaDeCompras.TryGetValue(titulo, out Lista? lista)) // Verificando se foi o que foi passado é o título de alguma lista.
+        while (true)
         {
-            // Se foi:
-            Console.WriteLine("\n\t1 - Editar título da lista");
-            Console.WriteLine("\t2 - Editar item da lista");
-            Console.Write("\n\tDigite a opção desejada: ");
-            //Parecido com o switch na classe Program.
-
-            int opcao = int.Parse(Console.ReadLine()!);
-
-            switch (opcao)
+            Console.Write("\n\tInforme o título da lista a editar ou digite 'sair' para interromper: ");
+            string titulo = Console.ReadLine()!;
+            if (titulo.ToLower() == "sair")
             {
-                case 1:
-                    EditarTituloDaLista(listaDeCompras, lista);
-                    break;
-                case 2:
-                    EditarItemDaLista(lista);
-                    break;
-                default:
-                    Console.WriteLine("\n\tOpção inválida.");
-                    break;
+                Thread.Sleep(500);
+                return;
             }
-        }
-        else
-        {
-            // Se não foi:
-            Console.WriteLine($"\n\tLista '{titulo}' não localizada.");
+
+            if (listaDeCompras.TryGetValue(titulo, out Lista? lista)) // Verificando se foi o que foi passado é o título de alguma lista.
+            {
+                // Se foi:
+                Console.WriteLine("\n\t1 - Editar título da lista");
+                Console.WriteLine("\t2 - Editar item da lista");
+                Console.Write("\n\tDigite a opção desejada: ");
+                //Parecido com o switch na classe Program.
+
+                int opcao = int.Parse(Console.ReadLine()!);
+
+                switch (opcao)
+                {
+                    case 1:
+                        EditarTituloDaLista(listaDeCompras, lista);
+                        break;
+                    case 2:
+                        EditarItemDaLista(lista);
+                        break;
+                    default:
+                        Console.WriteLine("\n\tOpção inválida.");
+                        break;
+                }
+            }
+            else
+            {
+                // Se não foi:
+                Console.WriteLine($"\n\tLista '{titulo}' não localizada.");
+            }
+            break;
         }
     }
 
@@ -62,7 +71,7 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
             Console.Write("\n\tInforme o novo título ou digite 'sair' para interromper a edição: ");
             string novoTitulo = Console.ReadLine()!;
 
-            if (novoTitulo == "sair")
+            if (novoTitulo.ToLower() == "sair")
             {
                 Console.WriteLine("\n\tEdição cancelada.");
                 Thread.Sleep(500);
@@ -82,7 +91,7 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                 // Informa o programa que o titulo original dentro do método EditarTituloDaLista() é o mesmo que o título padrão da lista informada
                 // no método acima.
 
-                lista.EditarTituloDaLista(tituloOriginal, novoTitulo);
+                lista.EditarTitulo(tituloOriginal, novoTitulo);
                 // Chamada do método EditarTituloDaLista(), da classe Lista.
 
                 listaDeCompras.Remove(tituloOriginal);
@@ -91,9 +100,10 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                 listaDeCompras.Add(novoTitulo, lista);
                 // Adição, logo em seguida, do novo título.
 
-                // Mesmo que o 'título 'original' tenha recebido esse nome, o título novo passa a ser o 'original' e quando é feita a alteraçaõ do título
+                // Mesmo que o 'título 'original' tenha recebido esse nome, o título novo passa a ser o 'original' e quando é feita a alteração do título
                 // mais uma vez, o que era o título 'novo', dentro do contexto desses métodos, vira o título 'original'.
             }
+            break;
         }
     }
 
@@ -109,7 +119,7 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
             Console.Write("\n\tInforme o produto que será editado ou digite 'sair' para interromper a edição: ");
             string produtoParaEditar = Console.ReadLine()!;
 
-            if (produtoParaEditar == "sair")
+            if (produtoParaEditar.ToLower() == "sair")
             {
                 Console.WriteLine("\n\tEdição cancelada.");
                 Thread.Sleep(500);
@@ -236,9 +246,6 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                 return item;
             }
         }
-
         return null;
     }
-
 }
-

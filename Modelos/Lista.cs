@@ -29,7 +29,7 @@ internal class Lista // Dentro dessa classe interna é onde ocorrem todos os pro
         }
     }
 
-    public string EditarTituloDaLista(string tituloOriginal, string novoTitulo)
+    public void EditarTitulo(string tituloOriginal, string novoTitulo)
     //Esse método permite a alteração do título da lista que for informado.
     {
         if (novoTitulo != Titulo) // Verificando se o título passado é igual ao existente.
@@ -38,15 +38,15 @@ internal class Lista // Dentro dessa classe interna é onde ocorrem todos os pro
             Titulo = novoTitulo; // Essa linha joga o valor do novo título onde estava o anterior.
             Console.WriteLine($"\tTítulo atual da lista após a edição: {Titulo}");
             Console.WriteLine($"\n\tTítulo alterado de: {tituloOriginal} para: {novoTitulo}");
-            return novoTitulo;
+            // return novoTitulo;
         }
         else // Se for igual, ele não permitirá a alteração, pois não fará sentido alterar para o mesmo título.
         {
             Console.WriteLine("\n\tO novo título é igual ao título atual. Nenhuma alteração realizada.");
-            return tituloOriginal;
+            // return tituloOriginal;
         }
     }
-
+    
     public void FecharCompra() // Esse é o método que finaliza a compra do usuário,
                                // somando o que estiver dentro do campo 'valor' em cada item adicionado pelo usuário.
     {

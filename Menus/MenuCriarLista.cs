@@ -20,7 +20,7 @@ internal class MenuCriarLista // Dentro dessa classe interna é onde ocorrem tod
             Console.Write($"\n\tInforme o titulo da lista ou digite 'sair' para enterromper: ");
             string titulo = Console.ReadLine()!;
 
-            if (titulo == "sair")
+            if (titulo.ToLower() == "sair")
             // Se, no console, o cliente enviar a palavra 'sair', o programa irá fechar o loop 'while' e seguir com o 'script padrão'.
             // Se voltar à classe Program, você verá que, no 'switch', após a chamada de uma classe de acordo com a opção, há uma chamada
             // do método VoltarAoMenu(). Essa chamada é o 'script padrão', pois ele solicita que seja digitada qualquer tecla para retornar
