@@ -81,13 +81,13 @@ internal class MenuAdicionarItem // Dentro dessa classe interna é onde ocorrem 
                 }
                 // O while está mandando o programa voltar à solicitação da quantidade enquanto o parâmetro não for atingido.
 
-                decimal total = registroValor * registroQuantidade;
+                // decimal total = registroValor * registroQuantidade;
                 // Esse decimal é para multiplicar o valor decimal passado em 'registroValor' pela quantidade passada em 'registroQuantidade'.
                 // Exemplo: se o usuário passar '20' na quantidade e '101,57' no valor, essa variável multiplica um pelo outro e entrega o resultado
                 // em 'Item novosItens = new()', logo abaixo. No caso do exemplo, a saída do valor na exibição do item cadastrado seria de 'R$ 2031,40'.
 
                 Lista lista = listaDeCompras[titulo];
-                Item novosItens = new(produto: registroProduto, quantidade: registroQuantidade, valor: total);
+                Item novosItens = new(produto: registroProduto, quantidade: registroQuantidade, precoUnitario: registroValor);
                 lista.AdicionarItem(novosItens);
                 novosItens.Conteudo();
                 

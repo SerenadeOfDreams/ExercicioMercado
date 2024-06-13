@@ -6,25 +6,37 @@ namespace ExercicioMercado.Modelos; // Passando o namespace de acordo com a past
 
 internal class Item // Dentro dessa classe interna é onde ocorrem todos os processos dessa classe.
 {
-    public Item(string produto, int quantidade, decimal valor)
+    public Item(string produto, int quantidade, decimal precoUnitario)
     {
         Produto = produto;
         Quantidade = quantidade;
-        Valor = valor;
+        PrecoUnitario = precoUnitario;
     }
 
     public string Produto { get; set;} // A intância da variável de texto para o produto que o cliente inserir.
     public int Quantidade { get; set;} // A intância da variável numérica inteira para a quantidade do produto que o cliente inserir.
-    public decimal Valor { get; set;} // A intância da variável decimal para o valor do produto que o cliente inserir.
+    public decimal PrecoUnitario { get; set; }
+    public decimal Valor => PrecoUnitario * Quantidade; // A intância da variável decimal para o valor do produto que o cliente inserir.
+    // private decimal precoUnitario;
+    // public decimal PrecoUnitario
+    // {
+    //     get {return precoUnitario; }
+    //     set
+    //     {
+    //         precoUnitario = value;
+    //         Valor = Quantidade * precoUnitario;
+    //     }
+    // }
+
 
     public void Conteudo() // Este é o método que mostra o conteúdo de uma lista de compras,
                            // assim como informado na classe Lista.
     {
-        Console.WriteLine("\n\tProduto\t\tQuantidade\t  Valor");
+        Console.WriteLine("\n\tProduto\t\tQuantidade\tValor unitario\t  Valor total");
         // Esse Console.WriteLine é para separar, na parte de cima da visualização da lista,
         // qual campo representa o produto, a quantidade e o valor dos itens.
 
-        Console.WriteLine($"\n\t{Produto}\t\t{Quantidade}\t\tR$ {Valor}");
+        Console.WriteLine($"\n\t{Produto}\t\t{Quantidade}\t\tR$ {PrecoUnitario}\t\tR$ {Valor}");
         // Esse Console.WriteLine é o que exibe, de fato, esses itens,
         // concatenando de acordo com a regra acima e de forma espaçada.
         

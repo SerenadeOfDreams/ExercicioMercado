@@ -47,22 +47,6 @@ internal class Lista // Dentro dessa classe interna é onde ocorrem todos os pro
         }
     }
 
-    public Item EncontrarItem(string produtoOriginal)
-    //Esse método é para identificar um item dentro de uma lista de acordo com o produto específico que está na lista,
-    //permitindo, assim, a alteração do item.
-    {
-        foreach (Item item in itens) //Esse foreach é para, novamente, percorrer a lista informada,
-                                     //mas, dessa vez, procurando o campo 'produto' dentro da lista.
-        {
-            if (item.Produto == produtoOriginal)
-            {
-                return item;
-            }
-        }
-
-        return null;
-    }
-
     public void FecharCompra() // Esse é o método que finaliza a compra do usuário,
                                // somando o que estiver dentro do campo 'valor' em cada item adicionado pelo usuário.
     {

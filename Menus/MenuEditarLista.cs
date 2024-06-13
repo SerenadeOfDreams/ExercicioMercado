@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using ExercicioMercado.Modelos; // Passando o using para que as classes da pasta Menus possam ler as classes que precisam da pasta Modelos.
 
 namespace ExercicioMercado.Menus; // Passando o namespace de acordo com a pasta onde a classe está, para que ela possa interagir melhor com as classes que precisar.
@@ -115,89 +117,127 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
             }
 
             // Encontra o item na lista pelo produto
-            Item itemParaEditar = lista.EncontrarItem(produtoParaEditar);
+            Item? itemParaEditar = EncontrarItem(produtoParaEditar, lista.Itens);
 
             if (itemParaEditar == null)
             {
                 Console.WriteLine("\n\tProduto não encontrado na lista.");
                 return;
             }
-
-            while (true)
+            else
             {
-                // Aqui, o while volta à solicitação de qual campo será alterado. Após, o usuário informará o que será inserido no campo.
-                // Isso se repete até que o usuário envie 'sair' no console para voltar ao menu.
+                ProcurarCampo(itemParaEditar);
+            }
+            break;
+        }
+    }
 
-                Console.Write("\n\tInforme o campo que será alterado ('produto', 'quantidade' ou 'valor') ou digite 'sair' para interromper a edição: ");
-                string campoAlteracao = Console.ReadLine()!.ToLower();
+    private void ProcurarCampo(Item itemParaEditar)
+    {
+        while (true)
+        {
+            // Aqui, o while volta à solicitação de qual campo será alterado. Após, o usuário informará o que será inserido no campo.
+            // Isso se repete até que o usuário envie 'sair' no console para voltar ao menu.
 
-                if (campoAlteracao.ToLower() == "sair")
-                {
-                    Console.WriteLine("\n\tEdição cancelada.");
-                    return; // Sai do método EditarItemDaLista
-                }
+            Console.Write("\n\tInforme o campo que será alterado ('produto', 'quantidade' ou 'valor') ou digite 'sair' para interromper a edição: ");
+            string campoAlteracao = Console.ReadLine()!.ToLower();
 
-                if (campoAlteracao != "produto" && campoAlteracao != "quantidade" && campoAlteracao != "valor")
-                // Aqui é verificado se o que foi passado no console pelo usuário corresponde ao disponível na lista para alteração.
-                {
-                    Console.WriteLine("\n\tCampo inválido. Por favor, escolha 'produto', 'quantidade' ou 'valor'.");
-                    return;
-                }
-
-                
-                string novoValorString;
-                int novoValorInt;
-                decimal novoValorDecimal;
-
-                Console.Write($"\n\tInforme o novo {campoAlteracao} ou digite 'sair' para interromper a edição: ");
-                // novoValorString = Console.ReadLine()!;
-
-                // if (novoValorString.ToLower() == "sair")
-                // {
-                //     Console.WriteLine("\n\tEdição cancelada.");
-                //     return; // Sai do método EditarItemDaLista
-                // }
-
-                switch (campoAlteracao)
-                {
-                    // Aqui é usado o switch para consultar o que foi escrito em 'campoAlteração' e, de acordo com o case, com base no que foi passado
-                    // no console, o programa segue para alteração do conteúdo do campo desejado.
-                    case "produto":
-                        novoValorString = Console.ReadLine()!;
-                        itemParaEditar.Produto = novoValorString;
-                        break;
-                    case "quantidade":
-                        if (int.TryParse(Console.ReadLine(), out novoValorInt) && novoValorInt > 0)
-                        {
-                            itemParaEditar.Quantidade = novoValorInt;
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número inteiro.");
-                            continue; // Retorna ao início do loop para solicitar o novo valor
-                        }
-                        
-                    case "valor":
-                        if (decimal.TryParse(Console.ReadLine(), out novoValorDecimal))
-                        {
-                            itemParaEditar.Valor = novoValorDecimal * itemParaEditar.Quantidade;
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número decimal.");
-                            continue; // Retorna ao início do loop para solicitar o novo valor
-                        }
-                        
-                }
-
-                Console.WriteLine("\n\tEdição realizada com sucesso.");
-                break; // Sai do loop após a edição ser realizada com sucesso                  
+            if (campoAlteracao.ToLower() == "sair")
+            {
+                Console.WriteLine("\n\tEdição cancelada.");
+                return; // Sai do método EditarItemDaLista
             }
 
+            if (campoAlteracao != "produto" && campoAlteracao != "quantidade" && campoAlteracao != "valor")
+            // Aqui é verificado se o que foi passado no console pelo usuário corresponde ao disponível na lista para alteração.
+            {
+                Console.WriteLine("\n\tCampo inválido. Por favor, escolha 'produto', 'quantidade' ou 'valor'.");
+                continue;
+            }
+            else
+            {
+                EditarCampo(itemParaEditar, campoAlteracao);
+            }
+            Console.WriteLine("\n\tEdição realizada com sucesso.");
+            break; // Sai do loop após a edição ser realizada com sucesso
+        }
+    }
+
+    private void EditarCampo(Item itemParaEditar, string campoAlteracao)
+    {
+        while (true)
+        {
+            string novoValorString;
+            int novoValorInt;
+            decimal novoValorDecimal;
+
+            Console.Write($"\n\tInforme o novo {campoAlteracao} ou digite 'sair' para interromper a edição: ");
+            novoValorString = Console.ReadLine()!;
+
+            if (novoValorString.ToLower() == "sair")
+            {
+                Console.WriteLine("\n\tEdição cancelada.");
+                return; // Sai do método EditarItemDaLista
+            }
+
+            switch (campoAlteracao)
+            {
+                // Aqui é usado o switch para consultar o que foi escrito em 'campoAlteração' e, de acordo com o case, com base no que foi passado
+                // no console, o programa segue para alteração do conteúdo do campo desejado.
+                case "produto":
+                    // novoValorString = Console.ReadLine()!;
+                    
+                    if (Regex.IsMatch(novoValorString, @"^[a-zA-z]+$"))
+                    {
+                        itemParaEditar.Produto = novoValorString;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\tProduto inválido. Insira um nome contendo apenas letras");
+                        continue;
+                    }
+                case "quantidade":
+                    if (int.TryParse(novoValorString, out novoValorInt) && novoValorInt > 0)
+                    {
+                        itemParaEditar.Quantidade = novoValorInt;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número inteiro.");
+                        continue; // Retorna ao início do loop para solicitar o novo valor
+                    }
+                case "valor":
+                    if (decimal.TryParse(novoValorString, out novoValorDecimal))
+                    {
+                        itemParaEditar.PrecoUnitario = novoValorDecimal;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número decimal.");
+                        continue; // Retorna ao início do loop para solicitar o novo valor
+                    }                
+            }
+            break;
+        }
+    }
+
+    private Item? EncontrarItem(string produtoOriginal, List<Item> itens)
+    //Esse método é para identificar um item dentro de uma lista de acordo com o produto específico que está na lista,
+    //permitindo, assim, a alteração do item.
+    {
+        foreach (Item item in itens) //Esse foreach é para, novamente, percorrer a lista informada,
+                                     //mas, dessa vez, procurando o campo 'produto' dentro da lista.
+        {
+            if (item.Produto == produtoOriginal)
+            {
+                return item;
+            }
         }
 
+        return null;
     }
 
 }

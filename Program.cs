@@ -12,14 +12,6 @@ Dictionary<string, Lista> listaDeCompras = new(); // criando o dicionário que a
 // Onde é solicitado que o usuário insira alguma informação, é usado um Console.Write no texto de solicitação ao invés de um Console.WriteLine,
 // pois o WriteLine pula uma linha para a próxima ação do programa. Com o Console.Write, o que o usuário escrever ficará na mesma linha da solicitação.
 
-void VoltarAoMenu() // Esse método serve para retornar ao método ExibirMenuDoMercado após a ação desejada pelo usuário for finalizada.
-{
-    Console.Write("\n\tPressione qualquer tecla para voltar ao menu");
-    Console.ReadKey();
-    Thread.Sleep(1000);
-    ExibirMenuDoMercado();
-}
-
 void Encerramento() // Esse é só um método estilizado para quando o usuário for encerrar o programa.
 {
     // Eu usei o Console.Write nesse método para que, na 'animação' de encerramento, o programa não fique pulando uma linha a cada texto apresentado.
@@ -120,3 +112,11 @@ void ExibirMenuDoMercado() // Esse é o método principal, que direciona o usuá
 }
 
 ExibirMenuDoMercado(); // Essa é a chamada do ponto de entrada do programa.
+
+void VoltarAoMenu() // Esse método serve para retornar ao método ExibirMenuDoMercado após a ação desejada pelo usuário for finalizada.
+{
+    Console.Write("\n\tPressione qualquer tecla para voltar ao menu");
+    Console.ReadKey();
+    Thread.Sleep(1000);
+    ExibirMenuDoMercado();
+}
