@@ -6,9 +6,9 @@ namespace ExercicioMercado.Menus; // Passando o namespace de acordo com a pasta 
 // jogar no texto sem que seja necessário abrir um Console.Write ou outra função de exibição. Isso permite que seja apresentado,
 // no console, a variável que o usuário preencheu.
 
-internal class MenuExcluirLista // Dentro dessa classe interna é onde ocorrem todos os processos dessa classe.
+internal class MenuExcluirLista : Menu // Dentro dessa classe interna é onde ocorrem todos os processos dessa classe.
 {
-    internal void Executar(Dictionary<string, Lista> listaDeCompras)
+    public override void Executar(Dictionary<string, Lista> listaDeCompras)
     // O método Executar é o que realiza a ação de acordo com a opção descrita no menú principal.
     {
         Console.Clear();

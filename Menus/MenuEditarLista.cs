@@ -14,9 +14,9 @@ namespace ExercicioMercado.Menus; // Passando o namespace de acordo com a pasta 
 // do método VoltarAoMenu(). Essa chamada é o 'script padrão', pois ele solicita que seja digitada qualquer tecla para retornar
 // ao menú do programa
 
-internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem todos os processos dessa classe.
+internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde ocorrem todos os processos dessa classe.
 {
-    internal void Executar(Dictionary<string, Lista> listaDeCompras)
+    public override void Executar(Dictionary<string, Lista> listaDeCompras)
     // O método Executar é o que realiza a ação de acordo com a opção descrita no menú principal.
     {
         Console.Clear();
@@ -44,21 +44,21 @@ internal class MenuEditarLista // Dentro dessa classe interna é onde ocorrem to
                 {
                     case 1:
                         EditarTituloDaLista(listaDeCompras, lista);
-                        break;
+                        continue;
                     case 2:
                         EditarItemDaLista(lista);
-                        break;
+                        continue;
                     default:
                         Console.WriteLine("\n\tOpção inválida.");
-                        break;
+                        continue;
                 }
             }
             else
             {
                 // Se não foi:
                 Console.WriteLine($"\n\tLista '{titulo}' não localizada.");
+                continue;
             }
-            break;
         }
     }
 

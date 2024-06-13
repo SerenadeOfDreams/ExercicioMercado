@@ -34,9 +34,7 @@ internal class Lista // Dentro dessa classe interna é onde ocorrem todos os pro
     {
         if (novoTitulo != Titulo) // Verificando se o título passado é igual ao existente.
         {
-            Console.WriteLine( $"\n\tTítulo atual da lista antes da edição: {Titulo}");
             Titulo = novoTitulo; // Essa linha joga o valor do novo título onde estava o anterior.
-            Console.WriteLine($"\tTítulo atual da lista após a edição: {Titulo}");
             Console.WriteLine($"\n\tTítulo alterado de: {tituloOriginal} para: {novoTitulo}");
             // return novoTitulo;
         }

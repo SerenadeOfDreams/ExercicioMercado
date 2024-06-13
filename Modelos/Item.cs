@@ -17,17 +17,6 @@ internal class Item // Dentro dessa classe interna é onde ocorrem todos os proc
     public int Quantidade { get; set;} // A intância da variável numérica inteira para a quantidade do produto que o cliente inserir.
     public decimal PrecoUnitario { get; set; }
     public decimal Valor => PrecoUnitario * Quantidade; // A intância da variável decimal para o valor do produto que o cliente inserir.
-    // private decimal precoUnitario;
-    // public decimal PrecoUnitario
-    // {
-    //     get {return precoUnitario; }
-    //     set
-    //     {
-    //         precoUnitario = value;
-    //         Valor = Quantidade * precoUnitario;
-    //     }
-    // }
-
 
     public void Conteudo() // Este é o método que mostra o conteúdo de uma lista de compras,
                            // assim como informado na classe Lista.

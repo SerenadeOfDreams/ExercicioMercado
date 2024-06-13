@@ -17,23 +17,33 @@ void Encerramento() // Esse é só um método estilizado para quando o usuário 
     // Eu usei o Console.Write nesse método para que, na 'animação' de encerramento, o programa não fique pulando uma linha a cada texto apresentado.
     // É por estética.
     Console.Clear();
-    Console.Write("\t.");
+    Console.Write("\tEncerrando");
     Thread.Sleep(400);
     Console.Clear();
 
-    Console.Write("\t..");
+    Console.Clear();
+    Console.Write("\tEncerrando.");
     Thread.Sleep(400);
     Console.Clear();
 
-    Console.Write("\t...");
+    Console.Write("\tEncerrando..");
     Thread.Sleep(400);
     Console.Clear();
 
-    Console.Write("\t..");
+    Console.Write("\tEncerrando...");
     Thread.Sleep(400);
     Console.Clear();
 
-    Console.Write("\t.");
+    Console.Write("\tEncerrando..");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Write("\tEncerrando.");
+    Thread.Sleep(400);
+    Console.Clear();
+
+    Console.Clear();
+    Console.Write("\tEncerrando");
     Thread.Sleep(400);
     Console.Clear();
 
@@ -49,65 +59,55 @@ void Encerramento() // Esse é só um método estilizado para quando o usuário 
     Thread.Sleep(450);
 }
 
+Dictionary<int, Menu> opcoes = new();
+opcoes.Add(1, new MenuCriarLista());
+opcoes.Add(2, new MenuAdicionarItem());
+opcoes.Add(3, new MenuExibirLista());
+opcoes.Add(4, new MenuEditarLista());
+opcoes.Add(5, new MenuExcluirLista());
+opcoes.Add(6, new MenuFinalizarCompra());
+
 void ExibirMenuDoMercado() // Esse é o método principal, que direciona o usuário até as funções do programa.
 {
-    Console.Clear();
-    
-    Console.WriteLine("\n\t1 - Criar lista de compras");
-    Console.WriteLine("\t2 - Preencher lista de compras");
-    Console.WriteLine("\t3 - Visualizar lista de compras");
-    Console.WriteLine("\t4 - Editar lista de compras");
-    Console.WriteLine("\t5 - Excluir lista de compras");
-    Console.WriteLine("\t6 - Finalizar compra");
-    Console.WriteLine("\t7 - Sair");
-    Console.Write("\n\tDigite a opção desejada: ");
-
-    int opcao = int.Parse(Console.ReadLine()!);
-    // Pega o número que o usuário digitou de opção e converte para o Console.ReadLine na mesma linha de código.
-    // Essa conversão para ReadLine também funciona com variáveis do tipo decimal e double.
-
-    switch(opcao) // Pega o número passado no Console.ReadLine e, de acordo com a opção, realiza a função especificada dentro de cada 'case'.
+    while (true)
     {
-        case 1: // O case 1 cria uma lista de compras.
-            MenuCriarLista menu1 = new MenuCriarLista();
-            menu1.Executar(listaDeCompras);
-            VoltarAoMenu();
-            break;
-        case 2: // I case 2 adiciona um item à lista de compras já criada.
-            MenuAdicionarItem menu2 = new MenuAdicionarItem();
-            menu2.Executar(listaDeCompras);
-            VoltarAoMenu();
-            break;
-        case 3: // O case 3 exibe uma lista de compras já criada.
-            MenuExibirLista menu3 = new MenuExibirLista();
-            menu3.Executar(listaDeCompras);
-            VoltarAoMenu();
-            break;
-        case 4: // O case 4 permite a edição de uma lista de compras já criada.
-            MenuEditarLista menu4 = new MenuEditarLista();
-            menu4.Executar(listaDeCompras);
-            VoltarAoMenu();
-            break;
-        case 5: // O case 5 permite a exclusão de uma lista de compras já criada.
-            MenuExcluirLista menu5 = new MenuExcluirLista();
-            menu5.Executar(listaDeCompras);
-            VoltarAoMenu();
-            break;
-        case 6: // O case 6 finaliza a compra de acordo com a lista passada pelo usuário.
-            MenuFinalizarCompra menu6 = new MenuFinalizarCompra();
-            menu6.Executar(listaDeCompras);
-            VoltarAoMenu();
-            break;
-        case 7: // O case 7 é para fechar o programa.
-            Encerramento();
-            break;
-        default: // O default é para caso o usuário insira qualquer coisa na opção que não seja um número inteiro e que seja dentro da faixa de opções.
+        try
+        {
             Console.Clear();
-            Console.WriteLine("\n\tOpção inválida.");
+            Console.WriteLine("\n\t1 - Criar lista de compras");
+            Console.WriteLine("\t2 - Preencher lista de compras");
+            Console.WriteLine("\t3 - Visualizar lista de compras");
+            Console.WriteLine("\t4 - Editar lista de compras");
+            Console.WriteLine("\t5 - Excluir lista de compras");
+            Console.WriteLine("\t6 - Finalizar compra");
+            Console.WriteLine("\t7 - Sair");
+            Console.Write("\n\tDigite a opção desejada: ");
+
+            int opcao = int.Parse(Console.ReadLine()!);
+            // Pega o número que o usuário digitou de opção e converte para o Console.ReadLine na mesma linha de código.
+            // Essa conversão para ReadLine também funciona com variáveis do tipo decimal e double.
+            if (opcoes.ContainsKey(opcao))
+            {
+                Menu menuASerExibido = opcoes[opcao];
+                menuASerExibido.Executar(listaDeCompras);
+                VoltarAoMenu();
+            }
+            else if (opcao == 7)
+            {
+                Encerramento();
+            }
+            else
+            {
+                Console.WriteLine("\n\tOpção inválida.");
+                continue;
+            }
+            break;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\n\tHouve um problema: {ex.Message}");
             Thread.Sleep(2000);
-            Console.Clear();
-            break;
-        
+        }
     }
 }
 
