@@ -13,6 +13,7 @@ internal class MenuAdicionarItem : Menu
         {
             Console.Write("\n\tInforme o título da lista que deseja preencher ou digite 'sair' para interromper: ");
             string titulo = Console.ReadLine()!;
+            // string path = $"Listas/{titulo}.txt";
 
             if (titulo.ToLower() == "sair")
             {
@@ -20,7 +21,7 @@ internal class MenuAdicionarItem : Menu
                 return;
             }
 
-            if (listaDeCompras.ContainsKey(titulo))
+            if (listaDeCompras.ContainsKey(titulo)/* || File.Exists(path)*/)
             {
                 string registroProduto;
                 while (true)
@@ -60,7 +61,6 @@ internal class MenuAdicionarItem : Menu
                 Item novosItens = new(produto: registroProduto, quantidade: registroQuantidade, precoUnitario: registroValor);
                 lista.AdicionarItem(novosItens);
                 novosItens.Conteudo();
-
             }
             else
             {
