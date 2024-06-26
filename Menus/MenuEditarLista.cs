@@ -66,7 +66,7 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
     // Esse é o método que altera o título da lista, substituindo o que foi informado e identificado através do método acima
     // pelo novo título desejado.
     {
-        while(true)
+        while (true)
         {
             Console.Write("\n\tInforme o novo título ou digite 'sair' para interromper a edição: ");
             string novoTitulo = Console.ReadLine()!;
@@ -196,7 +196,7 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
                 // no console, o programa segue para alteração do conteúdo do campo desejado.
                 case "produto":
                     // novoValorString = Console.ReadLine()!;
-                    
+
                     if (Regex.IsMatch(novoValorString, @"^[a-zA-z]+$"))
                     {
                         itemParaEditar.Produto = novoValorString;
@@ -228,7 +228,7 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
                     {
                         Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número decimal.");
                         continue; // Retorna ao início do loop para solicitar o novo valor
-                    }                
+                    }
             }
             break;
         }
