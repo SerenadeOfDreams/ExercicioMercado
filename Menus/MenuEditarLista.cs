@@ -1,23 +1,12 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
-using ExercicioMercado.Modelos; // Passando o using para que as classes da pasta Menus possam ler as classes que precisam da pasta Modelos.
+using ExercicioMercado.Modelos;
 
-namespace ExercicioMercado.Menus; // Passando o namespace de acordo com a pasta onde a classe está, para que ela possa interagir melhor com as classes que precisar.
+namespace ExercicioMercado.Menus;
 
-// Quando um Console.WriteLine($""); estiver como nesse exemplo, é para pegar o valor de uma variável local ou de outra classe e
-// jogar no texto sem que seja necessário abrir um Console.Write ou outra função de exibição. Isso permite que seja apresentado,
-// no console, a variável que o usuário preencheu.
-
-//-----------------------------------------------------------------------------------------------------------------------------
-// Se, no console, o cliente enviar a palavra 'sair', o programa irá fechar o loop 'while' e seguir com o 'script padrão'.
-// Se voltar à classe Program, você verá que, no 'switch', após a chamada de uma classe de acordo com a opção, há uma chamada
-// do método VoltarAoMenu(). Essa chamada é o 'script padrão', pois ele solicita que seja digitada qualquer tecla para retornar
-// ao menú do programa
-
-internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde ocorrem todos os processos dessa classe.
+internal class MenuEditarLista : Menu
 {
     public override void Executar(Dictionary<string, Lista> listaDeCompras)
-    // O método Executar é o que realiza a ação de acordo com a opção descrita no menú principal.
     {
         Console.Clear();
         while (true)
@@ -30,13 +19,11 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
                 return;
             }
 
-            if (listaDeCompras.TryGetValue(titulo, out Lista? lista)) // Verificando se foi o que foi passado é o título de alguma lista.
+            if (listaDeCompras.TryGetValue(titulo, out Lista? lista))
             {
-                // Se foi:
                 Console.WriteLine("\n\t1 - Editar título da lista");
                 Console.WriteLine("\t2 - Editar item da lista");
                 Console.Write("\n\tDigite a opção desejada: ");
-                //Parecido com o switch na classe Program.
 
                 int opcao = int.Parse(Console.ReadLine()!);
 
@@ -55,7 +42,6 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
             }
             else
             {
-                // Se não foi:
                 Console.WriteLine($"\n\tLista '{titulo}' não localizada.");
                 continue;
             }
@@ -108,14 +94,9 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
     }
 
     private void EditarItemDaLista(Lista lista)
-    // Método para alteração dos itens inseridos na lista.
     {
         while (true)
         {
-            // O operador de loop 'while' é para que o programa retorne a um ponto específico no código e execute a ação novamente,
-            // até que o usuário cancele essa ação. Aqui, ele retorna à solicitação do produto de uma lista já existente, para que
-            // sejam verificados os campos existentes de produto, quantidade e valor dentro dessa lista e ocorram as alterações.
-
             Console.Write("\n\tInforme o produto que será editado ou digite 'sair' para interromper a edição: ");
             string produtoParaEditar = Console.ReadLine()!;
 
@@ -123,10 +104,9 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
             {
                 Console.WriteLine("\n\tEdição cancelada.");
                 Thread.Sleep(500);
-                return; // Sai do método EditarItemDaLista
+                return;
             }
 
-            // Encontra o item na lista pelo produto
             Item? itemParaEditar = EncontrarItem(produtoParaEditar, lista.Itens);
 
             if (itemParaEditar == null)
@@ -146,20 +126,16 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
     {
         while (true)
         {
-            // Aqui, o while volta à solicitação de qual campo será alterado. Após, o usuário informará o que será inserido no campo.
-            // Isso se repete até que o usuário envie 'sair' no console para voltar ao menu.
-
             Console.Write("\n\tInforme o campo que será alterado ('produto', 'quantidade' ou 'valor') ou digite 'sair' para interromper a edição: ");
             string campoAlteracao = Console.ReadLine()!.ToLower();
 
             if (campoAlteracao.ToLower() == "sair")
             {
                 Console.WriteLine("\n\tEdição cancelada.");
-                return; // Sai do método EditarItemDaLista
+                return;
             }
 
             if (campoAlteracao != "produto" && campoAlteracao != "quantidade" && campoAlteracao != "valor")
-            // Aqui é verificado se o que foi passado no console pelo usuário corresponde ao disponível na lista para alteração.
             {
                 Console.WriteLine("\n\tCampo inválido. Por favor, escolha 'produto', 'quantidade' ou 'valor'.");
                 continue;
@@ -169,7 +145,7 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
                 EditarCampo(itemParaEditar, campoAlteracao);
             }
             Console.WriteLine("\n\tEdição realizada com sucesso.");
-            break; // Sai do loop após a edição ser realizada com sucesso
+            break;
         }
     }
 
@@ -187,16 +163,12 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
             if (novoValorString.ToLower() == "sair")
             {
                 Console.WriteLine("\n\tEdição cancelada.");
-                return; // Sai do método EditarItemDaLista
+                return;
             }
 
             switch (campoAlteracao)
             {
-                // Aqui é usado o switch para consultar o que foi escrito em 'campoAlteração' e, de acordo com o case, com base no que foi passado
-                // no console, o programa segue para alteração do conteúdo do campo desejado.
                 case "produto":
-                    // novoValorString = Console.ReadLine()!;
-
                     if (Regex.IsMatch(novoValorString, @"^[a-zA-z]+$"))
                     {
                         itemParaEditar.Produto = novoValorString;
@@ -216,7 +188,7 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
                     else
                     {
                         Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número inteiro.");
-                        continue; // Retorna ao início do loop para solicitar o novo valor
+                        continue;
                     }
                 case "valor":
                     if (decimal.TryParse(novoValorString, out novoValorDecimal))
@@ -227,7 +199,7 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
                     else
                     {
                         Console.WriteLine("\n\tValor de quantidade inválido. Por favor, insira um número decimal.");
-                        continue; // Retorna ao início do loop para solicitar o novo valor
+                        continue;
                     }
             }
             break;
@@ -235,11 +207,8 @@ internal class MenuEditarLista : Menu // Dentro dessa classe interna é onde oco
     }
 
     private Item? EncontrarItem(string produtoOriginal, List<Item> itens)
-    //Esse método é para identificar um item dentro de uma lista de acordo com o produto específico que está na lista,
-    //permitindo, assim, a alteração do item.
     {
-        foreach (Item item in itens) //Esse foreach é para, novamente, percorrer a lista informada,
-                                     //mas, dessa vez, procurando o campo 'produto' dentro da lista.
+        foreach (Item item in itens)
         {
             if (item.Produto == produtoOriginal)
             {
