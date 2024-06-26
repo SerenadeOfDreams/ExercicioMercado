@@ -53,7 +53,7 @@ partial class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"\n\tHouve um problema: {ex.Message}");
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
             }
         }
     }
